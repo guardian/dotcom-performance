@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: com.twitter
+Implementation-Title: scrooge-core
+Implementation-Version: 3.20.0
+Implementation-Vendor-Id: com.twitter
+Specification-Vendor: com.twitter
+Specification-Title: scrooge-core
+Specification-Version: 3.20.0
+
