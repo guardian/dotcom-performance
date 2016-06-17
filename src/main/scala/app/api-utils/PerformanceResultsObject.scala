@@ -9,7 +9,7 @@ import scala.xml.Elem
 /**
  * Created by mmcnamara on 10/02/16.
  */
-class PerformanceResultsObject(url:String, testType: String, urlforTestResults: String, tTFB: Int, tFP:Int, tDC: Int, bDC: Int, tFL: Int, bFL: Int, sI: Int, status: String, alertWeight: Boolean, alertSpeed: Boolean, failedNeedsRetest: Boolean) {
+class PerformanceResultsObject(url:String, testType: String, urlforTestResults: String, tTFB: Int, tFP:Int, render:Int, tDC: Int, bDC: Int, tFL: Int, bFL: Int, sI: Int, visualComp: Int, status: String, alertWeight: Boolean, alertSpeed: Boolean, failedNeedsRetest: Boolean) {
 // todo - add publication date; and setters and getters for same ; also add to csv string
   val timeOfTest: String = DateTime.now().toString
   val testUrl: String = url
@@ -25,6 +25,7 @@ class PerformanceResultsObject(url:String, testType: String, urlforTestResults: 
   val timeFirstPaintInSec: Double = roundAt(3)(timeFirstPaintInMs.toDouble/1000)
   val timeDocCompleteInMs: Int = tDC
   val timeDocCompleteInSec: Double = roundAt(3)(timeDocCompleteInMs.toDouble/1000)
+  val startRenderInMs: Int = render
   val bytesInDocComplete: Int = bDC
   val kBInDocComplete: Int = roundAt(0)(bytesInDocComplete.toDouble/1024).toInt
   val mBInDocComplete: Double = roundAt(3)(bytesInDocComplete.toDouble/1048576)
@@ -36,6 +37,7 @@ class PerformanceResultsObject(url:String, testType: String, urlforTestResults: 
   val estUSPrePaidCost: Double = roundAt(3)((bytesInFullyLoaded.toDouble/1048576)*0.10)
   val estUSPostPaidCost: Double = roundAt(3)((bytesInFullyLoaded.toDouble/1048576)*0.06)
   val speedIndex: Int = sI
+  val visualComplete: Int = visualComp
   val aboveTheFoldCompleteInSec: Double = roundAt(3)(speedIndex.toDouble/1000)
   val resultStatus:String = status
   var pageWeightAlertDescription: String = "No alerts have been set for this page"
@@ -178,7 +180,7 @@ class PerformanceResultsObject(url:String, testType: String, urlforTestResults: 
   }
 
   def toCSVString(): String = {
-    printTimeLastLaunched() + "," + testUrl.toString + "," + cleanString(headline.getOrElse("Unknown")) + "," + cleanString(getPageType) + "," + getFirstPublished + "," + getPageLastUpdated + ","  + getLiveBloggingNow + ","  + typeOfTest + "," + friendlyResultUrl + "," + timeToFirstByte.toString + "," + timeFirstPaintInMs.toString + "," + timeDocCompleteInMs + "," + bytesInDocComplete + "," + timeFullyLoadedInMs + "," + bytesInFullyLoaded + "," + speedIndex + "," + cleanString(resultStatus) + "," + alertStatusPageWeight + "," + alertStatusPageSpeed + "," + brokenTest + "," + editorialElementList.map(element => "," + cleanString(element.resource) + "," + cleanString(element.contentType) + "," + element.bytesDownloaded ).mkString + fillRemainingGapsAndNewline()
+    printTimeLastLaunched() + "," + testUrl.toString + "," + cleanString(headline.getOrElse("Unknown")) + "," + cleanString(getPageType) + "," + getFirstPublished + "," + getPageLastUpdated + ","  + getLiveBloggingNow + ","  + typeOfTest + "," + friendlyResultUrl + "," + timeToFirstByte.toString + "," + timeFirstPaintInMs.toString + "," + startRenderInMs.toString + "," + timeDocCompleteInMs + "," + bytesInDocComplete + "," + timeFullyLoadedInMs + "," + bytesInFullyLoaded + "," + speedIndex + "," + visualComplete + "," + cleanString(resultStatus) + "," + alertStatusPageWeight + "," + alertStatusPageSpeed + "," + brokenTest + "," + editorialElementList.map(element => "," + cleanString(element.resource) + "," + cleanString(element.contentType) + "," + element.bytesDownloaded ).mkString + fillRemainingGapsAndNewline()
   }
 
   def toFullHTMLTableCells(): String = {

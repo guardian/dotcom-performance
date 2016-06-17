@@ -26,51 +26,52 @@ object App {
 
     //  Define names of s3bucket, configuration and output Files
     val amazonDomain = "https://s3-eu-west-1.amazonaws.com"
+//    val s3BucketName = "dotcom-performance-monitor"
     val s3BucketName = "capi-wpt-querybot"
-    val configFileName = "config.conf"
+    val configFileName = "dotcom-performance-monitor/config.conf"
     val emailFileName = "addresses.conf"
     val interactiveSampleFileName = "interactivesamples.conf"
     val visualsPagesFileName = "visuals.conf"
 
     val currentPerformanceIndicatorResults = "currentperformanceindicators.html"
 
-    val articleWithManyImagesRecordDesktop = "articlewithmanyimagesdesktop.csv"
-    val cartoonRecordDesktop = "cartoondesktop.csv"
-    val articleWithVideosAndMapsRecordDesktop = "articlewithvideosandmapsdesktop.csv"
-    val longReadRecordDesktop = "longreaddesktop.csv"
-    val liveBlogRecordDesktop = "liveblogdesktop.csv"
-    val footballMatchReportRecordDesktop = "footballmatchreportdesktop.csv"
-    val interactivePageRecordDesktop = "interactivepagedesktop.csv"
-    val videoPageRecordDesktop = "videopagedesktop.csv"
-    val audioPageRecordDesktop = "audiopagedesktop.csv"
-    val networkFrontUKRecordDesktop = "networkfrontukdesktop.csv"
-    val networkFrontUSRecordDesktop = "networkfrontusdesktop.csv"
-    val networkFrontAuRecordDesktop = "networkfrontaudesktop.csv"
-    val sectionFrontRecordDesktop = "sectionfrontdesktop.csv"
-    val footballPageRecordDesktop = "footballpagedesktop.csv"
-    val tagPageRecordDesktop = "tagpagedesktop.csv"
+    val articleWithManyImagesRecordDesktop = "dotcom-performance-monitor/articlewithmanyimagesdesktop.csv"
+    val cartoonRecordDesktop = "dotcom-performance-monitor/cartoondesktop.csv"
+    val articleWithVideosAndMapsRecordDesktop = "dotcom-performance-monitor/articlewithvideosandmapsdesktop.csv"
+    val longReadRecordDesktop = "dotcom-performance-monitor/longreaddesktop.csv"
+    val liveBlogRecordDesktop = "dotcom-performance-monitor/liveblogdesktop.csv"
+    val footballMatchReportRecordDesktop = "dotcom-performance-monitor/footballmatchreportdesktop.csv"
+    val interactivePageRecordDesktop = "dotcom-performance-monitor/interactivepagedesktop.csv"
+    val videoPageRecordDesktop = "dotcom-performance-monitor/videopagedesktop.csv"
+    val audioPageRecordDesktop = "dotcom-performance-monitor/audiopagedesktop.csv"
+    val networkFrontUKRecordDesktop = "dotcom-performance-monitor/networkfrontukdesktop.csv"
+    val networkFrontUSRecordDesktop = "dotcom-performance-monitor/networkfrontusdesktop.csv"
+    val networkFrontAuRecordDesktop = "dotcom-performance-monitor/networkfrontaudesktop.csv"
+    val sectionFrontRecordDesktop = "dotcom-performance-monitor/sectionfrontdesktop.csv"
+    val footballPageRecordDesktop = "dotcom-performance-monitor/footballpagedesktop.csv"
+    val tagPageRecordDesktop = "dotcom-performance-monitor/tagpagedesktop.csv"
 
-    val articleWithManyImagesRecordMobile = "articlewithmanyimagesmobile.csv"
-    val cartoonRecordMobile = "cartoonmobile.csv"
-    val articleWithVideosAndMapsRecordMobile = "articlewithvideosandmapsmobile.csv"
-    val longReadRecordMobile = "longreadmobile.csv"
-    val liveBlogRecordMobile = "liveblogmobile.csv"
-    val footballMatchReportRecordMobile = "footballmatchreportmobile.csv"
-    val interactivePageRecordMobile = "interactivepagemobile.csv"
-    val videoPageRecordMobile = "videopagemobile.csv"
-    val audioPageRecordMobile = "audiopagemobile.csv"
-    val networkFrontUKRecordMobile = "networkfrontukmobile.csv"
-    val networkFrontUSRecordMobile = "networkfrontusmobile.csv"
-    val networkFrontAuRecordMobile = "networkfrontaumobile.csv"
-    val sectionFrontRecordMobile = "sectionfrontmobile.csv"
-    val footballPageRecordMobile = "footballpagemobile.csv"
-    val tagPageRecordMobile = "tagpagemobile.csv"
+    val articleWithManyImagesRecordMobile = "dotcom-performance-monitor/articlewithmanyimagesmobile.csv"
+    val cartoonRecordMobile = "dotcom-performance-monitor/cartoonmobile.csv"
+    val articleWithVideosAndMapsRecordMobile = "dotcom-performance-monitor/articlewithvideosandmapsmobile.csv"
+    val longReadRecordMobile = "dotcom-performance-monitor/longreadmobile.csv"
+    val liveBlogRecordMobile = "dotcom-performance-monitor/liveblogmobile.csv"
+    val footballMatchReportRecordMobile = "dotcom-performance-monitor/footballmatchreportmobile.csv"
+    val interactivePageRecordMobile = "dotcom-performance-monitor/interactivepagemobile.csv"
+    val videoPageRecordMobile = "dotcom-performance-monitor/videopagemobile.csv"
+    val audioPageRecordMobile = "dotcom-performance-monitor/audiopagemobile.csv"
+    val networkFrontUKRecordMobile = "dotcom-performance-monitor/networkfrontukmobile.csv"
+    val networkFrontUSRecordMobile = "dotcom-performance-monitor/networkfrontusmobile.csv"
+    val networkFrontAuRecordMobile = "dotcom-performance-monitor/networkfrontaumobile.csv"
+    val sectionFrontRecordMobile = "dotcom-performance-monitor/sectionfrontmobile.csv"
+    val footballPageRecordMobile = "dotcom-performance-monitor/footballpagemobile.csv"
+    val tagPageRecordMobile = "dotcom-performance-monitor/tagpagemobile.csv"
 
 
 
-    val resultsFromPreviousTests = "resultsFromPreviousTests.csv"
+//    val resultsFromPreviousTests = "dotcom-performance-monitor/resultsFromPreviousTests.csv"
 
-    val duplicateResultList = "duplicateresultsfromlastrun.csv"
+//    val duplicateResultList = "dotcom-performance-monitor/duplicateresultsfromlastrun.csv"
 
 
     //Define colors to be used for average values, warnings and alerts
@@ -82,18 +83,18 @@ object App {
     //initialize combinedResultsLists - these will be used to sort and accumulate test results
     // for the combined page and for long term storage file
 
-    val articleWithManyImages = "http://www.theguardian.com/environment/2016/jun/09/satellite-eye-on-earth-may-2016-in-pictures"
-    val stephencollinscartoon = "http://www.theguardian.com/lifeandstyle/ng-interactive/2016/may/21/stephen-collins-on-donald-trump-cartoon"
+    val articleWithManyImages = "https://www.theguardian.com/environment/2016/jun/09/satellite-eye-on-earth-may-2016-in-pictures"
+    val stephencollinscartoon = "https://www.theguardian.com/lifeandstyle/ng-interactive/2016/may/21/stephen-collins-on-donald-trump-cartoon"
     val articleWithVideosAndMaps = "https://www.theguardian.com/world/2016/may/20/egyptian-military-says-debris-from-egyptair-flight-ms804-found-in-sea"
-    val longRead = "http://www.theguardian.com/news/2016/apr/13/how-boots-went-rogue"
-    val liveBlog = "http://www.theguardian.com/politics/live/2016/jun/10/eu-referendum-live-remain-prospect-defeat-itv-debate-boris-johnson"
+    val longRead = "https://www.theguardian.com/news/2016/apr/13/how-boots-went-rogue"
+    val liveBlog = "https://www.theguardian.com/politics/live/2016/jun/10/eu-referendum-live-remain-prospect-defeat-itv-debate-boris-johnson"
     val footballMatchReport = "https://www.theguardian.com/football/live/2016/feb/17/gent-wolfsburg-champions-league-live"
-    val interactivePage = "http://www.theguardian.com/us-news/ng-interactive/2016/jun/07/live-primary-results-new-jersey-california"
-    val videoPage = "http://www.theguardian.com/politics/video/2016/jun/07/how-would-brexit-affect-you-eu-referendum-video-explainer"
-    val audioPage = "http://www.theguardian.com/news/audio/2016/jun/03/how-the-pentagon-punished-nsa-whistleblowers"
-    val networkFrontUK = "http://www.theguardian.com/uk"
-    val networkFrontUS = "http://www.theguardian.com/us"
-    val networkFrontAu = "http://www.theguardian.com/au"
+    val interactivePage = "https://www.theguardian.com/us-news/ng-interactive/2016/jun/07/live-primary-results-new-jersey-california"
+    val videoPage = "https://www.theguardian.com/politics/video/2016/jun/07/how-would-brexit-affect-you-eu-referendum-video-explainer"
+    val audioPage = "https://www.theguardian.com/news/audio/2016/jun/03/how-the-pentagon-punished-nsa-whistleblowers"
+    val networkFrontUK = "https://www.theguardian.com/uk"
+    val networkFrontUS = "https://www.theguardian.com/us"
+    val networkFrontAu = "https://www.theguardian.com/au"
     val sectionFront = "https://www.theguardian.com/uk/culture"
     val footballPage = "https://www.theguardian.com/football"
     val tagPage = "https://www.theguardian.com/sport/boxing"
@@ -116,20 +117,6 @@ object App {
     sectionFront,
     footballPage,
     tagPage)
-
-
-    var pageWeightAnchorId: Int = 0
-
-    //Initialize Interactive email alerts lists - these will be used to generate emails
-    var interactiveAlertList: List[PerformanceResultsObject] = List()
-
-    // var articleCSVResults: String = ""
-    //  var liveBlogCSVResults: String = ""
-    // var interactiveCSVResults: String = ""
-    //  var videoCSVResults: String = ""
-    //  var audioCSVResults: String = ""
-    //  var frontsCSVResults: String = ""
-
 
 
     //Create new S3 Client
@@ -163,23 +150,12 @@ object App {
     val wptBaseUrl: String = configArray(1)
     val wptApiKey: String = configArray(2)
     val wptLocation: String = configArray(3)
-    val emailUsername: String = configArray(4)
-    val emailPassword: String = configArray(5)
-    val visualsApiUrl: String = configArray(6)
-
-    //obtain list of email addresses for alerting
-    val emailAddresses: Array[List[String]] = s3Interface.getEmailAddresses
-    val generalAlertsAddressList: List[String] = emailAddresses(0)
-    val interactiveAlertsAddressList: List[String] = emailAddresses(1)
-
-    //Create Email Handler class
-    val emailer: EmailOperations = new EmailOperations(emailUsername, emailPassword)
 
     //obtain list of interactive samples to determine average size
     //val listofLargeInteractives: List[String] = s3Interface.getUrls(interactiveSampleFileName)
 
     //obtain list of items previously alerted on
-    val previousResults: List[PerformanceResultsObject] = s3Interface.getResultsFileFromS3(resultsFromPreviousTests)
+//    val previousResults: List[PerformanceResultsObject] = s3Interface.getResultsFileFromS3(resultsFromPreviousTests)
 
     val prevResultsArticleWithManyImagesDesktop = s3Interface.getResultsFileFromS3(articleWithManyImagesRecordDesktop)
     val prevResultsCartoonDesktop = s3Interface.getResultsFileFromS3(cartoonRecordDesktop)
@@ -219,6 +195,7 @@ object App {
     //get all content-type-lists
     val indicatorPages: List[(Option[ContentFields],String)] = listOfIndicatorPageUrls.map(page => capiQuery.getSinglePage(page))
     println(DateTime.now + " Closing Content API query connection")
+    println(indicatorPages.length + " pages returned successfully")
     capiQuery.shutDown
 
 
@@ -245,9 +222,10 @@ object App {
 
     // sendPageWeightAlert all urls to webpagetest at once to enable parallel testing by test agents
     val urlsToSend: List[String] = listOfIndicatorPageUrls
-    println("Combined list of urls: \n" + urlsToSend)
+    println("Combined list of urls contains: " + urlsToSend.length + "urls")
 
     val resultUrlList: List[(String, String)] = getResultPages(urlsToSend, urlFragments, wptBaseUrl, wptApiKey, wptLocation)
+    println("resultUrlList length = " + resultUrlList.length)
 
     // build result page listeners
     // first format alerts from previous test that arent in the new capi queries
@@ -274,6 +252,8 @@ object App {
       //Create a list of alerting pages and write to string
       //write article results to file
       println("Indicator Performance Test Complete")
+    println("Desktop Results array length: " + indicatorDesktopResultsArray.length)
+    println("Mobile Results array length: " + indicatorMobileResultsArray.length)
 
     val desktopLatestArticleWithManyImages = indicatorDesktopResultsArray(0)
     val desktopLatestCartoon = indicatorDesktopResultsArray(1)
@@ -394,15 +374,16 @@ object App {
 
   def listenForResultPages(capiPages: List[(Option[ContentFields],String)], contentType: String, resultUrlList: List[(String, String)], averages: PageAverageObject, wptBaseUrl: String, wptApiKey: String, wptLocation: String, urlFragments: List[String]): List[PerformanceResultsObject] = {
     println("ListenForResultPages called with: \n\n" +
-      " List of Urls: \n" + capiPages.map(page => page._2).mkString +
-      "\n\nList of WebPage Test results: \n" + resultUrlList.mkString +
-      "\n\nList of averages: \n" + averages.toHTMLString + "\n")
+      capiPages.length + " urls: \n" +
+      " List of Urls: \n" + capiPages.map(page => page._2 + "\n").mkString +
+      "\n\nList of WebPage Test results: \n" + resultUrlList.mkString)
 
     val listenerList: List[WptResultPageListener] = capiPages.flatMap(page => {
       for (element <- resultUrlList if element._1 == page._2) yield new WptResultPageListener(element._1, contentType, page._1, element._2)
     })
 
     println("Listener List created: \n" + listenerList.map(element => "list element: \n" + "url: " + element.pageUrl + "\n" + "resulturl" + element.wptResultUrl + "\n"))
+    println("Listener List length = " + listenerList.length)
 
     val resultsList: ParSeq[WptResultPageListener] = listenerList.par.map(element => {
       val wpt = new WebPageTest(wptBaseUrl, wptApiKey, urlFragments)
@@ -422,9 +403,12 @@ object App {
       println("all variables set for element")
       newElement
     })
+    println("results list length: " + resultsList.length)
     val testResults = resultsList.map(element => element.testResults).toList
     val resultsWithAlerts: List[PerformanceResultsObject] = testResults.map(element => setAlertStatus(element, averages))
-    resultsWithAlerts
+    println("Number of immediate results: " + testResults.length)
+    println("Number of results after alerts set" + resultsWithAlerts.length)
+    testResults
   }
 
   def confirmAlert(initialResult: PerformanceResultsObject, averages: PageAverageObject, urlFragments: List[String],wptBaseUrl: String, wptApiKey: String, wptLocation: String): PerformanceResultsObject = {
@@ -653,7 +637,7 @@ object App {
           } else {
             "Desktop"
           }
-          List((list.head, new PerformanceResultsObject("Missing test of type", dummyTestType, " for the above url", -1, -1, -1, -1, -1, -1, -1, "", false, false, true)))
+          List((list.head, new PerformanceResultsObject("Missing test of type", dummyTestType, " for the above url", -1, -1, -1, -1, -1, -1, -1, -1, -1, "", false, false, true)))
         } else {
           println("listSinglesToPairs has been passed an empty or odd number of elements: list has " + list.length + "elements")
           makeTuple(List((list.head, list.tail.head)), list.tail.tail)
