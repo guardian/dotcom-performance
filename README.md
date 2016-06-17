@@ -1,6 +1,7 @@
 # dotcom-performance
-This is a tool to regularly test a series of indicator pages or "canaries" in order to get a constant measure of the sites performance. This will be tracked to determine if there are any long-term trends in performance and also to detect any spike in load time.
-Current indicator pages are:
+<div>This is a tool to regularly test a series of indicator pages or "canaries" in order to get a constant measure of the sites performance. This will be tracked to determine if there are any long-term trends in performance and also to detect any spike in load time.</div>
+<div><p>Current indicator pages are:</p>
+<div>
     <p>http://www.theguardian.com/environment/2016/jun/09/satellite-eye-on-earth-may-2016-in-pictures - an article with many images</p>
     <p>http://www.theguardian.com/lifeandstyle/ng-interactive/2016/may/21/stephen-collins-on-donald-trump-cartoon - a cartoon</p>
     <p>https://www.theguardian.com/world/2016/may/20/egyptian-military-says-debris-from-egyptair-flight-ms804-found-in-sea - an article with videos and maps</p>
@@ -16,3 +17,5 @@ Current indicator pages are:
     <p>https://www.theguardian.com/uk/culture - the culture section front</p>
     <p>https://www.theguardian.com/football - the football section front</p>
     <p>https://www.theguardian.com/sport/boxing - a tag page</p>
+</div>
+</div>
