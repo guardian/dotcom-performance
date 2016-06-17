@@ -1,5 +1,5 @@
 # dotcom-performance
-<div>This is a tool to regularly test a series of indicator pages or "canaries" in order to get a constant measure of the sites performance. This will be tracked to determine if there are any long-term trends in performance and also to detect any spike in load time.</div>
+<div><p>This is a tool to regularly test a series of indicator pages or "canaries" in order to get a constant measure of the sites performance. This will be tracked to determine if there are any long-term trends in performance and also to detect any spike in load time.</p></div>
 <div><p>Current indicator pages are:</p>
 <div>
     <p>http://www.theguardian.com/environment/2016/jun/09/satellite-eye-on-earth-may-2016-in-pictures - an article with many images</p>
