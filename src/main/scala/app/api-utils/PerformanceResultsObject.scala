@@ -55,7 +55,8 @@ class PerformanceResultsObject(url:String, testType: String, urlforTestResults: 
   var editorialElementList: List[PageElementFromHTMLTableRow] = List()
   var editorialElementListMaxSize: Int = 5
   
-  var combinedImageSize: Double
+  var combinedImageSize: Double = 0
+
 
   def setHeadline(text: Option[String]):Unit = {headline = text}
   def setPageType(text: String):Unit = {pageType = Option(text)}
