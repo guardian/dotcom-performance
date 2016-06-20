@@ -68,12 +68,6 @@ object App {
     val tagPageRecordMobile = "dotcom-performance-monitor/tagpagemobile.csv"
 
 
-
-//    val resultsFromPreviousTests = "dotcom-performance-monitor/resultsFromPreviousTests.csv"
-
-//    val duplicateResultList = "dotcom-performance-monitor/duplicateresultsfromlastrun.csv"
-
-
     //Define colors to be used for average values, warnings and alerts
     val averageColor: String = "#d9edf7"
     //    val warningColor: String = "#fcf8e3"
@@ -151,11 +145,6 @@ object App {
     val wptApiKey: String = configArray(2)
     val wptLocation: String = configArray(3)
 
-    //obtain list of interactive samples to determine average size
-    //val listofLargeInteractives: List[String] = s3Interface.getUrls(interactiveSampleFileName)
-
-    //obtain list of items previously alerted on
-//    val previousResults: List[PerformanceResultsObject] = s3Interface.getResultsFileFromS3(resultsFromPreviousTests)
 
     val prevResultsArticleWithManyImagesDesktop = s3Interface.getResultsFileFromS3(articleWithManyImagesRecordDesktop)
     val prevResultsCartoonDesktop = s3Interface.getResultsFileFromS3(cartoonRecordDesktop)
@@ -198,42 +187,12 @@ object App {
     println(indicatorPages.length + " pages returned successfully")
     capiQuery.shutDown
 
-
-
- //todo - work in visuals list
- //   val visualsCapiResults = for(result <- combinedCapiResults if untestedVisualsTeamPagesFromToday.map(_.pageUrl).contains(result._2)) yield result
- //   val nonVisualsCapiResults = for(result <- combinedCapiResults if !untestedVisualsTeamPagesFromToday.map(_.pageUrl).contains(result._2)) yield result
-
- //   val nonCAPIResultsToRetest = for (result <- previousResultsToRetest if !combinedCapiResults.map(_._2).contains(result.testUrl)) yield result
-
-//    val dedupedResultsToRetestUrls: List[String] = for (result <- nonCAPIResultsToRetest) yield result.testUrl
-/*    val pagesToRetest: List[String] = previousResultsToRetest.map(_.testUrl)
-    val articleUrls: List[String] = for (page <- newOrChangedArticles) yield page._2
-    val liveBlogUrls: List[String] = for (page <- newOrChangedLiveBlogs) yield page._2
-    val interactiveUrls: List[String] = for (page <- newOrChangedInteractives) yield page._2
-    val frontsUrls: List[String] = for (page <- fronts) yield page._2
-    val videoUrls: List[String] = for (page <- newOrChangedVideoPages) yield page._2
-    val audioUrls: List[String] = for (page <- newOrChangedAudioPages) yield page._2
-*/
-    //get all pages from the visuals team api
-
-
-
-
     // sendPageWeightAlert all urls to webpagetest at once to enable parallel testing by test agents
     val urlsToSend: List[String] = listOfIndicatorPageUrls
     println("Combined list of urls contains: " + urlsToSend.length + "urls")
 
     val resultUrlList: List[(String, String)] = getResultPages(urlsToSend, urlFragments, wptBaseUrl, wptApiKey, wptLocation)
     println("resultUrlList length = " + resultUrlList.length)
-
-    // build result page listeners
-    // first format alerts from previous test that arent in the new capi queries
-
-    // munge into proper format and merge these with the capi results
-
-
-    //obtain results for articles
 
 
     println("Generating average values for articles")
@@ -364,10 +323,10 @@ object App {
   def getResultPages(urlList: List[String], urlFragments: List[String], wptBaseUrl: String, wptApiKey: String, wptLocation: String): List[(String, String)] = {
     val wpt: WebPageTest = new WebPageTest(wptBaseUrl, wptApiKey, urlFragments)
     val desktopResults: List[(String, String)] = urlList.map(page => {
-      (page, wpt.sendPage(page))
+      (page, wpt.testMultipleTimes(page,"Desktop",wptLocation,3))
     })
     val mobileResults: List[(String, String)] = urlList.map(page => {
-      (page, wpt.sendMobile3GPage(page, wptLocation))
+      (page, wpt.testMultipleTimes(page,"Android/3G",wptLocation,3))
     })
     desktopResults ::: mobileResults
   }
@@ -389,7 +348,7 @@ object App {
       val wpt = new WebPageTest(wptBaseUrl, wptApiKey, urlFragments)
       val newElement = new WptResultPageListener(element.pageUrl, element.pageType, element.pageFields,element.wptResultUrl)
       println("getting result for page element")
-      newElement.testResults = wpt.getResults(newElement.wptResultUrl)
+      newElement.testResults = wpt.getMultipleResults(newElement.wptResultUrl)
       println("result received\n setting headline")
       newElement.testResults.setHeadline(newElement.headline)
       println("headline set\n setting pagetype")
@@ -411,17 +370,6 @@ object App {
     testResults
   }
 
-  def confirmAlert(initialResult: PerformanceResultsObject, averages: PageAverageObject, urlFragments: List[String],wptBaseUrl: String, wptApiKey: String, wptLocation: String): PerformanceResultsObject = {
-    val webPageTest = new WebPageTest(wptBaseUrl, wptApiKey, urlFragments)
-    val testCount: Int = if (initialResult.timeToFirstByte > 1000) {
-      5
-    } else {
-      3
-    }
-    println("TTFB for " + initialResult.testUrl + "\n therefore setting test count of: " + testCount)
-    val AlertConfirmationTestResult: PerformanceResultsObject = setAlertStatus(webPageTest.testMultipleTimes(initialResult.testUrl, initialResult.typeOfTest, wptLocation, testCount), averages)
-    AlertConfirmationTestResult
-  }
 
   def setAlertStatus(resultObject: PerformanceResultsObject, averages: PageAverageObject): PerformanceResultsObject = {
     //  Add results to string which will eventually become the content of our results file
@@ -501,19 +449,7 @@ object App {
     val pageAverages: PageAverageObject = new GeneratedInteractiveAverages(resultsList, averageColor)
     pageAverages
   }
-
-
-  def retestUrl(initialResult: PerformanceResultsObject, wptBaseUrl: String, wptApiKey: String, wptLocation: String, urlFragments: List[String]): PerformanceResultsObject = {
-    val webPageTest = new WebPageTest(wptBaseUrl, wptApiKey, urlFragments)
-    val testCount: Int = if (initialResult.timeToFirstByte > 1000) {
-      5
-    } else {
-      3
-    }
-    println("TTFB for " + initialResult.testUrl + "\n therefore setting test count of: " + testCount)
-    //   val AlertConfirmationTestResult: PerformanceResultsObject = setAlertStatusPageWeight(webPageTest.testMultipleTimes(initialResult.testUrl, initialResult.typeOfTest, wptLocation, testCount), averages)
-    webPageTest.testMultipleTimes(initialResult.testUrl, initialResult.typeOfTest, wptLocation, testCount)
-  }
+  
 
   //This is to resolve issues where there is a missing Desktop or Mobile test so the tuple sorting gets borked - it wont give a perfect sort in this case, but better than the current state of things.
   def returnValidListOfPairs(list: List[PerformanceResultsObject]): (List[PerformanceResultsObject],List[PerformanceResultsObject]) = {

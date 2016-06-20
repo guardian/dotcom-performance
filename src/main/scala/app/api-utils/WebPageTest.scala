@@ -255,7 +255,7 @@ class WebPageTest(baseUrl: String, passedKey: String, urlFragments: List[String]
     }
   }
 
-  def testMultipleTimes(url: String, typeOfTest: String, wptLocation: String, testCount: Int): PerformanceResultsObject = {
+  def testMultipleTimes(url: String, typeOfTest: String, wptLocation: String, testCount: Int): String = {
       println("Alert registered on url: " + url + "\n" + "verify by retesting " + testCount + " times and taking median value")
       if(typeOfTest.contains("Desktop")){
         println("Forming desktop webpage test query to confirm alert status")
@@ -281,8 +281,7 @@ class WebPageTest(baseUrl: String, passedKey: String, urlFragments: List[String]
         val responseXML: Elem = scala.xml.XML.loadString(response.body.string)
         val resultPage: String =  (responseXML \\ "xmlUrl").text
         println(resultPage)
-        val testResultObject: PerformanceResultsObject = getMultipleResults(resultPage)
-        testResultObject
+        resultPage
     }
     else{
         println("Forming mobile 3G webpage test query to confirm alert status")
@@ -311,8 +310,7 @@ class WebPageTest(baseUrl: String, passedKey: String, urlFragments: List[String]
         val responseXML: Elem = scala.xml.XML.loadString(response.body.string)
         val resultPage: String =  (responseXML \\ "xmlUrl").text
         println(resultPage)
-        val testResultObject: PerformanceResultsObject = getMultipleResults(resultPage)
-        testResultObject
+        resultPage
       }
   }
 
