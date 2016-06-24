@@ -12,5 +12,10 @@ jQuery(document).ready(function() {
         jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
 
         e.preventDefault();
+        var highChart = Highcharts.charts[$(this).data('highchartsChart')];
+        var highChartCont = $(highChart.container).parent();
+        highChart.setSize(highChartCont.width(), highChartCont.height());
+        highChart.hasUserSize = undefined;
+
     });
 });

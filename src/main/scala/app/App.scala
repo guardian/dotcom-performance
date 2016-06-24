@@ -67,6 +67,8 @@ object App {
     val footballPageRecordMobile = "dotcom-performance-monitor/footballpagemobile.csv"
     val tagPageRecordMobile = "dotcom-performance-monitor/tagpagemobile.csv"
 
+// chart pages
+    val pageSpeedChart = "dotcom-performance-monitor/Reports/pagespeedcharts.html"
 
 
 //    val resultsFromPreviousTests = "dotcom-performance-monitor/resultsFromPreviousTests.csv"
@@ -321,8 +323,42 @@ object App {
     val postTestingTagPageMobile = (mobileLatestTagPage :: prevResultsTagPageMobile).take(1000)
 
 
+    // make chart pages
+    val pageSpeedChartPage = new PageSpeedChartPage(
+    postTestingArticleWithManyImagesListDesktop,
+    postTestingArticleWithManyImagesListMobile,
+    postTestingArticleWithVideosAndMapsDesktop,
+    postTestingArticleWithVideosAndMapsMobile,
+    postTestingAudioPageDesktop,
+    postTestingAudioPageMobile,
+    postTestingCartoonListDesktop,
+    postTestingCartoonListMobile,
+    postTestingFootballMatchReportDesktop,
+    postTestingFootballMatchReportMobile,
+    postTestingFootballPageDesktop,
+    postTestingFootballPageMobile,
+    postTestingInteractivePageDesktop,
+    postTestingInteractivePageMobile,
+    postTestingLiveBlogDesktop,
+    postTestingLiveBlogMobile,
+    postTestingLongReadDesktop,
+    postTestingLongReadMobile,
+    postTestingNetworkFrontAuDesktop,
+    postTestingNetworkFrontAuMobile,
+    postTestingNetworkFrontUKDesktop,
+    postTestingNetworkFrontUKMobile,
+    postTestingNetworkFrontUSDesktop,
+    postTestingNetworkFrontUSMobile,
+    postTestingSectionFrontDesktop,
+    postTestingSectionFrontMobile,
+    postTestingTagPageDesktop,
+    postTestingTagPageMobile,
+    postTestingVideoPageDesktop,
+    postTestingVideoPageMobile
+    )
+
     //write combined results to file
-    println(DateTime.now + " Writing liveblog results to S3")
+    println(DateTime.now + " Writing results to S3")
     s3Interface.writeFileToS3(currentPerformanceIndicatorResults, indicatorHTMLResults.toString())
 
     s3Interface.writeFileToS3(articleWithManyImagesRecordDesktop, postTestingArticleWithManyImagesListDesktop.map(_.toCSVString()).mkString)
@@ -357,6 +393,9 @@ object App {
     s3Interface.writeFileToS3(footballPageRecordMobile, postTestingFootballPageMobile.map(_.toCSVString()).mkString)
     s3Interface.writeFileToS3(tagPageRecordMobile, postTestingTagPageMobile.map(_.toCSVString()).mkString)
 
+
+    //write charts to file
+    s3Interface.writeFileToS3(pageSpeedChart, pageSpeedChartPage.toString())
 
     println("Job complete")
   }

@@ -35,12 +35,20 @@ def countWord(word:String, phrase: String): Int = {
   }
 }
 
+
 val trialcat = countCats.substring(countCats.indexOf("cat"),countCats.length)
 
 
 val catCount = countWord("cat", countCats)
 println("counted "+ catCount + " cats")
 
+
+def numlistToDesiredString(list: List[Int]): String = {
+  "[" +
+  list.toArray.toString
+}
+
+List.range(1 , 22)
 
 
 case class JsonPage(pageType: String, id: String, webPublicationDate: String, findDate: String, headline: String, url: String, types: Seq[Type])
