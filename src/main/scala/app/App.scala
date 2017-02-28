@@ -243,8 +243,8 @@ object App {
     //pageResults = pageResults.concat(articleAverages.toHTMLString)
 
     val pageResultsList = listenForResultPages(indicatorPages, "Indicator Page", resultUrlList, articleAverages, wptBaseUrl, wptApiKey, wptLocation, urlFragments)
-    val pageResultsMobile = pageResultsList.filter(_.typeOfTest.contains("Android"))
-    val pageResultsDesktop = pageResultsList.filter(_.typeOfTest.contains("Desktop"))
+    val pageResultsMobile = pageResultsList.filter(_.typeOfTestName.contains("Mobile"))
+    val pageResultsDesktop = pageResultsList.filter(_.typeOfTestName.contains("Desktop"))
     val indicatorHTMLResults = new  PageSpeedDashboardTabbed(pageResultsList, pageResultsDesktop, pageResultsMobile)
 
     val indicatorMobileResultsArray: Array[PerformanceResultsObject] = pageResultsMobile.toArray
