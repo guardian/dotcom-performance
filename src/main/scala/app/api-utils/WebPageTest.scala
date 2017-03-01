@@ -240,9 +240,12 @@ class WebPageTest(baseUrl: String, passedKey: String, urlFragments: List[String]
 
       println("Creating PerformanceResultsObject")
       val result: PerformanceResultsObject = new PerformanceResultsObject(testUrl, testType, testSummaryPage, timeToFirstByte, startRender, firstPaint, docTime, bytesInDoc, fullyLoadedTime, totalbytesIn, speedIndex, visualComplete, status, false, false, false)
+      println("result created - adding elements")
       val sortedElementList = sortPageElementList(elementsList)
       result.fullElementList = sortedElementList
+      println("full element list added")
       result.populateEditorialElementList(sortedElementList)
+      println("editorial element list populated")
       println("Result string: " + result.toHTMLSimpleTableCells())
       println("List of heaviest page Elements contains " + result.editorialElementList.length + " elements")
       println("Returning PerformanceResultsObject")

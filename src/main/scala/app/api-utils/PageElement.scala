@@ -113,9 +113,10 @@ class PageElementFromHTMLTableRow(htmlTableRow: String) extends PageElement{
   val contentDownloadClassname: String = "reqDownload"
   val bytesDownloadedClassname: String = "reqBytes"
   val errorStatusCodeClassname: String = "reqResult"
-  val iPClassname: String = "ReqIP"
+  val iPClassname: String = "reqIP"
 
-  val cleanString: String = htmlTableRow.replaceAll("<tr>","").replaceAll("</tr>", "").replaceAll(" odd","").replaceAll(" even","").replaceAll("Render", "").replaceAll("Doc","").replaceAll(" warning", "").replaceAll(" error", "")
+  if(htmlTableRow.isEmpty){println("This htmlTableRow was empty:\n" + htmlTableRow)}
+  val cleanString: String = htmlTableRow.replaceAll("<tr>","").replaceAll("</tr>", "").replaceAll(" odd","").replaceAll(" even","").replaceAll("Render", "").replaceAll("Doc","").replaceAll(" warning", "").replaceAll(" error", "").replaceAll(",", "")
 
   val resourceHTMLElement: String = getDataFromHTMLTableElement(cleanString, resourceClassname)
 
@@ -151,8 +152,10 @@ class PageElementFromHTMLTableRow(htmlTableRow: String) extends PageElement{
 
   def getDataFromHTMLTableElement(tableRow: String, classname: String): String = {
     val returnString: String = tableRow.substring(tableRow.indexOf(classname)+ classname.length + 2,tableRow.indexOf("</td>", tableRow.indexOf(classname)+ classname.length + 2))
+    //    println("\nGetDataFromHTMLTableElement Called: \n" + "classname = " + classname + "\n" + "returnString = " + returnString)
     returnString
   }
+
   def returnString():String = {
     val returnString:String  = "Resource: " + resource + ", \n" +
       "Content VisualsElementType: " + contentType + ", \n" +
@@ -193,7 +196,7 @@ class PageElementFromHTMLTableRow(htmlTableRow: String) extends PageElement{
 
   def toEmailRowString():String = {
     val returnString: String = "<tr class=\"datarow\">" +
-    "<td>  -  </td>" +
+      "<td>  -  </td>" +
       "<td>" + sizeInMB + " MB for the following " +
       contentType + ": " +
       "</td>" + "</tr>" + "\n" +
@@ -224,15 +227,9 @@ class PageElementFromHTMLTableRow(htmlTableRow: String) extends PageElement{
       tableNormalCellEmailTag + sizeInKB + "KB</td>" +
       "</tr>"
     returnString
-
-
   }
 
-  def isMedia():Boolean = {
-      contentType.contains("image") ||
-      contentType.contains("video") ||
-      contentType.contains("media")
-  }
+
 }
 
 

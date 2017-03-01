@@ -9,7 +9,8 @@ import play.libs.Json
  * Created by mmcnamara on 22/06/16.
  */
 class PageSpeedChart(resultList: List[PerformanceResultsObject] ) {
-val xAxisList: List[Int] = List.range(1 , (resultList.length + 1))
+//val xAxisList: List[Int] = List.range(1 , (resultList.length + 1))
+val xAxisList: List[String] = resultList.map(_.timeOfTest)
 
 //case classes
 //xaxis categories
@@ -40,7 +41,7 @@ val xAxisList: List[Int] = List.range(1 , (resultList.length + 1))
                                   |                                            x: -20
                                   |                                        },
                                   |                                        xAxis: {
-                                  |                                            categories: """.stripMargin + getStringOfNumbers(xAxisList) +
+                                  |                                            categories: """.stripMargin + getStringOfDates(xAxisList) +
                                   """
                                   |                                        },
                                   |                                        yAxis: {
@@ -86,6 +87,12 @@ val xAxisList: List[Int] = List.range(1 , (resultList.length + 1))
     "[" + list.head + list.tail.map(number => ", " + number).mkString + "]"
 
   }
+
+def getStringOfDates(list: List[String]): String = {
+  "[" + list.head + list.tail.map(date => ", " + date).mkString + "]"
+
+}
+
 
   override def toString(): String = {
     quickAndDirtyString

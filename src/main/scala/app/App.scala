@@ -255,8 +255,10 @@ object App {
       //write article results to file
       println("Indicator Performance Test Complete")
     println("Desktop Results array length: " + indicatorDesktopResultsArray.length)
-    println("Mobile Results array length: " + indicatorMobileResultsArray.length)
+    println("Desktop Results: \n" + indicatorDesktopResultsArray.toList.map(result => result.testUrl + "," + result.friendlyResultUrl + "," + result.brokenTest.toString + "\n").mkString)
 
+    println("Mobile Results array length: " + indicatorMobileResultsArray.length)
+    println("Mobile Results: \n" + indicatorMobileResultsArray.toList.map(result => result.testUrl + "," + result.friendlyResultUrl + "," + result.brokenTest.toString + "\n").mkString)
     val desktopLatestArticleWithManyImages = indicatorDesktopResultsArray(0)
     val desktopLatestCartoon = indicatorDesktopResultsArray(1)
     val desktopLatestArticleWithVideosAndMaps = indicatorDesktopResultsArray(2)
@@ -426,6 +428,7 @@ object App {
 
     val resultsList: ParSeq[WptResultPageListener] = listenerList.par.map(element => {
       val wpt = new WebPageTest(wptBaseUrl, wptApiKey, urlFragments)
+      if(element.wptResultUrl.length < 1){println("\n\n\n\n ******* EMPTY URL FOR PAGE: \n " + element.pageUrl)}
       val newElement = new WptResultPageListener(element.pageUrl, element.pageType, element.pageFields,element.wptResultUrl)
       println("getting result for page element")
       newElement.testResults = wpt.getResults(newElement.wptResultUrl)
